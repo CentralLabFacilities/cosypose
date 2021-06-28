@@ -8,7 +8,7 @@ from dask_jobqueue import SLURMCluster
 from distributed import Client, LocalCluster, as_completed
 from .record_chunk import record_chunk
 
-from cosypose.config import CONDA_BASE_DIR, CONDA_ENV, PROJECT_DIR, DASK_LOGS_DIR
+from cosypose.config import PROJECT_DIR, DASK_LOGS_DIR
 from cosypose.config import SLURM_GPU_QUEUE, SLURM_QOS, DASK_NETWORK_INTERFACE
 
 import dask
@@ -84,9 +84,6 @@ def record_dataset(args):
     log_dir = DASK_LOGS_DIR.as_posix()
     if args.distributed:
         env_extra = [
-            'module purge',
-            f'source {CONDA_BASE_DIR}/bin/activate',
-            f'conda activate {CONDA_ENV}',
             f'cd {PROJECT_DIR}',
             f'eval $(python -m job_runner.assign_gpu)',
             'export OMP_NUM_THREADS=1',

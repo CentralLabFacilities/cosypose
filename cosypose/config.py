@@ -12,9 +12,9 @@ hostname = socket.gethostname()
 username = getpass.getuser()
 
 PROJECT_ROOT = Path(cosypose.__file__).parent.parent
-PROJECT_DIR = PROJECT_ROOT
-DATA_DIR = PROJECT_DIR / 'data'
-LOCAL_DATA_DIR = PROJECT_DIR / 'local_data'
+PROJECT_DIR = Path(os.environ.get('COSYPOSE_DIR' , PROJECT_ROOT))
+DATA_DIR = Path(os.environ.get('COSYPOSE_DATA_DIR' , PROJECT_DIR / 'data'))
+LOCAL_DATA_DIR = Path(os.environ.get('COSYPOSE_LOCAL_DIR' ,PROJECT_DIR / 'local_data'))
 TEST_DATA_DIR = LOCAL_DATA_DIR
 DASK_LOGS_DIR = LOCAL_DATA_DIR / 'dasklogs'
 SYNT_DS_DIR = LOCAL_DATA_DIR / 'synt_datasets'
@@ -41,14 +41,6 @@ DEBUG_DATA_DIR.mkdir(exist_ok=True)
 ASSET_DIR = DATA_DIR / 'assets'
 MEMORY = Memory(CACHE_DIR, verbose=2)
 
-
-CONDA_PREFIX = os.environ['CONDA_PREFIX']
-if 'CONDA_PREFIX_1' in os.environ:
-    CONDA_BASE_DIR = os.environ['CONDA_PREFIX_1']
-    CONDA_ENV = os.environ['CONDA_DEFAULT_ENV']
-else:
-    CONDA_BASE_DIR = os.environ['CONDA_PREFIX']
-    CONDA_ENV = 'base'
 
 cfg = yaml.load((PROJECT_DIR / 'config_yann.yaml').read_text(), Loader=yaml.FullLoader)
 
