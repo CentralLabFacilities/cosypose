@@ -3,11 +3,6 @@ from setuptools import setup, find_packages
 from torch.utils.cpp_extension import BuildExtension, CppExtension
 from os import path
 
-here = path.abspath(path.dirname(__file__))
-
-# Use correct conda compiler used to build pytorch
-os.environ['CXX'] = os.environ.get('GXX', '')
-
 setup(
     name='cosypose',
     version='1.0.0',
