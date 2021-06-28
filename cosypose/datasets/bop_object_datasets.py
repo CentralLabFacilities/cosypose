@@ -5,7 +5,7 @@ from pathlib import Path
 class BOPObjectDataset:
     def __init__(self, ds_dir):
         ds_dir = Path(ds_dir)
-        infos_file = ds_dir / 'models_info.json'
+        infos_file = ds_dir / '../models_eval/models_info.json'
         infos = json.loads(infos_file.read_text())
         objects = []
         for obj_id, bop_info in infos.items():

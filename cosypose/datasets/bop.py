@@ -74,7 +74,7 @@ class BOPDataset:
         self.frame_index = pd.read_feather(save_file_index).reset_index(drop=True)
         self.annotations = pickle.loads(save_file_annotations.read_bytes())
 
-        models_infos = json.loads((ds_dir / 'models' / 'models_info.json').read_text())
+        models_infos = json.loads((ds_dir / 'models_eval' / 'models_info.json').read_text())
         self.all_labels = [f'obj_{int(obj_id):06d}' for obj_id in models_infos.keys()]
         self.load_depth = load_depth
 
