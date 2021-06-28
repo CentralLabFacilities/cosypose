@@ -4,7 +4,6 @@
 #TODO what about the pythonVersion enforced by conda?
 pin==2.6.1 #pin ist the pip packaging of pinocchio, version 2.3.1 is not available via pip
 assimp==4.1.4 #4.1.0 is not available via pip
-torchvision==0.5.0 #0.4.2 is not available via pip
 #rclone has a separate project, because it isn't a python package and not available via pip
 #TODO gxx_linux-64=7.3.0
 git-lfs==1.6 #this is not the same as conda-forge/git-lfs, so probably 
@@ -36,7 +35,6 @@ shapely==1.7.0
 wget==3.2
 pypng==0.0.20
 PyOpenGL==3.1.0
-Cython==0.29.21
 glumpy==1.1.0
 ipdb==0.12.3
 colorama==0.4.3
