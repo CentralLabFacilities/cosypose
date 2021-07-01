@@ -13,6 +13,7 @@ ipython
 
 ./deps/bullet3
 ./deps/job-runner
+numpy==1.17.4
 imageio==2.6.1
 simplejson==3.17.0
 opencv-python==4.1.2.30
