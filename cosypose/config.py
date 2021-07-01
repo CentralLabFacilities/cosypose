@@ -11,7 +11,11 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 hostname = socket.gethostname()
 username = getpass.getuser()
 
-PROJECT_ROOT = Path(cosypose.__file__).parent.parent
+if os.getenv("COSYPOSE_PROJECT_ROOT") is None:
+    PROJECT_ROOT = Path(cosypose.__file__).parent.parent
+else: 
+    PROJECT_ROOT = os.getenv("COSYPOSE_PROJECT_ROOT")
+    
 PROJECT_DIR = Path(os.environ.get('COSYPOSE_DIR' , PROJECT_ROOT))
 DATA_DIR = Path(os.environ.get('COSYPOSE_DATA_DIR' , PROJECT_DIR / 'data'))
 LOCAL_DATA_DIR = Path(os.environ.get('COSYPOSE_LOCAL_DIR' ,PROJECT_DIR / 'local_data'))
