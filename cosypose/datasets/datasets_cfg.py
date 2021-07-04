@@ -29,7 +29,7 @@ def keep_bop19(ds):
     return ds
 
 
-def make_scene_dataset(ds_name, n_frames=None):
+def make_scene_dataset(ds_name, n_frames=None, keyframes_path=None):
     # TLESS
     if ds_name == 'tless.primesense.train':
         ds = _make_tless_dataset('train_primesense')
@@ -55,9 +55,11 @@ def make_scene_dataset(ds_name, n_frames=None):
         ds = BOPDataset(ds_dir, split='test')
 
     elif ds_name == 'ycbv.test.keyframes':
+        print("IN DATASETS_CFG")
         ds_dir = BOP_DS_DIR / 'ycbv'
         ds = BOPDataset(ds_dir, split='test')
-        keyframes_path = ds_dir / 'keyframe.txt'
+        if keyframes_path is None:
+            keyframes_path = ds_dir / 'keyframe.txt'
         ls = keyframes_path.read_text().split('\n')[:-1]
         frame_index = ds.frame_index
         ids = []

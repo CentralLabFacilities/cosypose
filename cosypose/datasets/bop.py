@@ -50,9 +50,9 @@ def build_index(ds_dir, save_file, split, save_file_annotations):
 
     frame_index = pd.DataFrame({'scene_id': scene_ids, 'cam_id': cam_ids,
                                 'view_id': view_ids, 'cam_name': cam_ids})
-    frame_index.to_feather(save_file)
-    save_file_annotations.write_bytes(pickle.dumps(annotations))
-    return
+    #frame_index.to_feather(save_file)
+    #save_file_annotations.write_bytes(pickle.dumps(annotations))
+    return frame_index, save_file_annotations
 
 
 class BOPDataset:
@@ -67,12 +67,14 @@ class BOPDataset:
         logger.info(f'Building index and loading annotations...')
         save_file_index = self.ds_dir / f'index_{split}.feather'
         save_file_annotations = self.ds_dir / f'annotations_{split}.pkl'
-        build_index(
+        index, annot = build_index(
             ds_dir=ds_dir, save_file=save_file_index,
             save_file_annotations=save_file_annotations,
             split=split)
-        self.frame_index = pd.read_feather(save_file_index).reset_index(drop=True)
-        self.annotations = pickle.loads(save_file_annotations.read_bytes())
+        # self.frame_index = pd.read_feather(save_file_index).reset_index(drop=True)
+        # self.annotations = pickle.loads(save_file_annotations.read_bytes())
+        self.frame_index=index
+        self.annotations=annot
 
         models_infos = json.loads((ds_dir / 'models_eval' / 'models_info.json').read_text())
         self.all_labels = [f'obj_{int(obj_id):06d}' for obj_id in models_infos.keys()]
