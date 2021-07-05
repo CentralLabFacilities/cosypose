@@ -28,7 +28,7 @@ class Plotter:
 
         overlay = np.zeros_like(rgb_input)
         overlay[~mask] = rgb_input[~mask] * 0.6 + 255 * 0.4
-        overlay[mask] = rgb_rendered[mask] * 0.8 + 255 * 0.2
+        overlay[mask] = rgb_rendered[mask] * 1 + 255 * 0
         # overlay[mask] = rgb_rendered[mask] * 0.3 + rgb_input[mask] * 0.7
         f = self.plot_image(overlay, name='image')
         return f

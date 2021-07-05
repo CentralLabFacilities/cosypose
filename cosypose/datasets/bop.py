@@ -52,7 +52,7 @@ def build_index(ds_dir, save_file, split, save_file_annotations):
                                 'view_id': view_ids, 'cam_name': cam_ids})
     #frame_index.to_feather(save_file)
     #save_file_annotations.write_bytes(pickle.dumps(annotations))
-    return frame_index, save_file_annotations
+    return frame_index, pickle.dumps(annotations)
 
 
 class BOPDataset:
@@ -74,7 +74,7 @@ class BOPDataset:
         # self.frame_index = pd.read_feather(save_file_index).reset_index(drop=True)
         # self.annotations = pickle.loads(save_file_annotations.read_bytes())
         self.frame_index=index
-        self.annotations=annot
+        self.annotations=pickle.loads(annot)
 
         models_infos = json.loads((ds_dir / 'models_eval' / 'models_info.json').read_text())
         self.all_labels = [f'obj_{int(obj_id):06d}' for obj_id in models_infos.keys()]
