@@ -119,7 +119,7 @@ class BackgroundAugmentation:
             h, w, c = im.shape
             im_bg = self.get_bg_image(random.randint(0, len(self.image_dataset) - 1))
             im_bg = to_pil(im_bg)
-            im_bg = torch.as_tensor(np.asarray(im_bg.resize((w, h))))
+            im_bg = torch.as_tensor(np.asarray(im_bg.resize((w, h))).copy())
             mask_bg = mask == 0
             im[mask_bg] = im_bg[mask_bg]
         return im, mask, obs

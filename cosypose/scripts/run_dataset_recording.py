@@ -1,3 +1,11 @@
+import os
+import sys
+
+sys.path.append('/home/bv-user/cosypose-ordner/cosypose')
+
+site_pkgs='/vol/tiago/bildverarbeitung-cosypose/lib/python3.6/site-packages'
+sys.path.append(site_pkgs)
+
 import argparse
 from colorama import Fore, Style
 

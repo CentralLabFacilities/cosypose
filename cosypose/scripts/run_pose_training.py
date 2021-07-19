@@ -1,3 +1,11 @@
+import os
+import sys
+
+sys.path.append('/home/bv-user/cosypose-ordner/cosypose')
+
+site_pkgs='/vol/tiago/bildverarbeitung-cosypose/lib/python3.6/site-packages'
+sys.path.append(site_pkgs)
+
 import argparse
 import numpy as np
 import os
@@ -58,7 +66,7 @@ def make_cfg(args):
     cfg.clip_grad_norm = 0.5
 
     # Training
-    cfg.batch_size = 32
+    cfg.batch_size = 4 #32
     cfg.epoch_size = 115200
     cfg.n_epochs = 700
     cfg.n_dataloader_workers = N_WORKERS

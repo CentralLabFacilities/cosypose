@@ -1,3 +1,11 @@
+import os
+import sys
+
+sys.path.append('/home/bv-user/cosypose-ordner/cosypose')
+
+site_pkgs='/vol/tiago/bildverarbeitung-cosypose/lib/python3.6/site-packages'
+sys.path.append(site_pkgs)
+
 import logging
 import numpy as np
 from copy import deepcopy
@@ -245,7 +253,7 @@ def main():
     if args.n_views > 1:
         ds_names = ['hb', 'tless', 'ycbv']
     else:
-        ds_names = ['hb', 'icbin', 'itodd', 'lmo', 'tless', 'tudl', 'ycbv']
+        ds_names = ['ycbv'] #'hb', 'icbin', 'itodd', 'lmo', 'tless', 'tudl', 
 
     for ds_name in ds_names:
         this_cfg = deepcopy(cfg)

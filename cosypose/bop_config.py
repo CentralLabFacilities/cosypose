@@ -68,7 +68,7 @@ BOP_CONFIG['ycbv'] = dict(
     train_pbr_real_ds_names=[('ycbv.pbr', 1), ()],
     inference_ds_name=['ycbv.bop19'],
     test_ds_name=['ycbv.bop19'],
-    train_synt_real_ds_names=[('ycbv.pbr', 20), ('ycbv.train.synt', 1), ('ycbv.train.real', 3)]
+    train_synt_real_ds_names=[('ycbv.pbr', 20), ('ycbv.train.synt', 1), ('ycbv.train.real', 3)] 
 )
 
 PBR_DETECTORS = dict(
